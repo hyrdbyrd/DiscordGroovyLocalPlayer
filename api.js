@@ -83,6 +83,14 @@ const sendSuccess = res => {
     res.status = 200;
     res.json({ success: true });
     res.send();
+};
+
+const sendError = (err, res) => {
+    console.error(err);
+
+    res.status = 500;
+    res.json({ success: false });
+    res.send();
 }
 
 api
@@ -90,8 +98,9 @@ api
         console.log(req.body);
         const { login, password } = req.body;
         d.init(login, password);
-        await d.auth();
-        sendSuccess(res);
+        d.auth()
+            .then(() => sendSuccess(res))
+            .catch((err) => sendError(err, res));
     })
     .post('/play', (req, res) => {
         const { type, input } = req.body;
@@ -115,11 +124,7 @@ api
         sendSuccess(res);
     })
     .use((req, res, next, err) => {
-        console.error(err);
-
-        res.status = 500;
-        res.json({ success: false });
-        res.send();
+        sendError(err, res);
     });
 
 exports.api = api;

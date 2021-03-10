@@ -6,7 +6,7 @@ block content
     +form('Авторизация')
         +formInputField('login')(placeholder='Логин')
         +formInputField('password')(type='password', placeholder='Пароль')
-        +formButtonField('button', 'Войти')
+        +formButtonField('auth-button', 'Войти')
 
 block scripts
     script(src='/static/auth.js')

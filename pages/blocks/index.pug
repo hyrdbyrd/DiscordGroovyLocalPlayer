@@ -1,3 +1,5 @@
+include header
+
 doctype html
 html(lang="en")
     head
@@ -6,10 +8,10 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Плеер
         link(rel="stylesheet", href="/static/index.css")
+        script(src='/static/helpers.js')
     body
-        include header
         main.main
             +header(path)
             block content
             block scripts
-        script(src="/static/index.js")
+        script(src='/static/index.js')

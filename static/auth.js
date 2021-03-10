@@ -1,14 +1,18 @@
-const form = document.querySelector('#form');
+window.addEventListener('DOMContentLoaded', () => {
+    const { afterFetch } = window.INTERNAL_EXPORTS;
 
-const authBtn = form['auth-button'];
+    const form = document.querySelector('#form');
 
-authBtn.addEventListener('click', () => {
-    const login = form.login.value;
-    const password = form.password.value;
+    const authBtn = form['auth-button'];
+    const login = form.login;
+    const password = form.password;
 
-    fetch('/api/init', {
-        method: 'post',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ login, password })
-    });
-})
+    authBtn.addEventListener('click', () => {
+        afterFetch(fetch('/api/init', {
+            method: 'post',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ login: login.value, password: password.value })
+        }));
+    })
+
+});
