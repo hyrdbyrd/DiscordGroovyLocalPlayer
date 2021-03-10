@@ -5,13 +5,26 @@ const { api } = require('./api');
 
 const app = express();
 
+app.set('view engine', 'pug');
+app.set('views', './pages');
+
+const PORT = 3000;
+
 app
     .use(express.json())
+    .use((req, res, next) => {
+        res.locals.origin = `${req.protocol}://${req.hostname}${PORT ? ':' + PORT : ''}`;
+        res.locals.path = req.path;
+        next();
+    })
     .use('/static', express.static(path.resolve('./static')))
-    .get('/', (req, res) => res.sendFile(path.resolve('./static/index.html')))
-    .get('/playlist', (req, res) => res.sendFile(path.resolve('./static/playlist.html')))
-    .get('/album', (req, res) => res.sendFile(path.resolve('./static/album.html')))
-    .get('/author', (req, res) => res.sendFile(path.resolve('./static/author.html')))
-    .get('/actions', (req, res) => res.sendFile(path.resolve('./static/actions.html')))
+    .get('/', (req, res) => res.render('auth'))
+    .get('/:page', (req, res, next) => {
+        try {
+            res.render(req.params.page);
+        } catch (e) {
+            next();
+        }
+    })
     .use('/api', api)
-    .listen(3000);
+    .listen(PORT);

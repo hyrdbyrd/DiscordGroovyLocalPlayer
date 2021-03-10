@@ -1,0 +1,10 @@
+extends blocks/index
+
+include blocks/form
+
+block content
+    +playerForm('Альбом', 'album')
+        +formInputField('album')(value='4098328', placeholder='Id альбома')
+
+block scripts
+    script(src='/static/player.js')

@@ -1,0 +1,10 @@
+extends blocks/index
+
+include blocks/form
+
+block content
+    +playerForm('Исполнитель', 'author')
+        +formInputField('author')(value='1714943', placeholder='Id исполнителя')
+
+block scripts
+    script(src='/static/player.js')

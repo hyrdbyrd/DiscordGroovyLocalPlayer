@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Плеер
+        link(rel="stylesheet", href="/static/index.css")
+    body
+        include header
+        main.main
+            +header(path)
+            block content
+            block scripts
+        script(src="/static/index.js")

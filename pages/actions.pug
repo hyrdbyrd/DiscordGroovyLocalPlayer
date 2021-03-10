@@ -1,0 +1,13 @@
+extends blocks/index
+
+include blocks/form
+
+block content
+    +form('Всякие штуки')
+        +formInputField('channel-id')(value='528943154309758988', placeholder='Id канала')
+        +formButtonField('clear', 'Полная очистка')
+        +formButtonField('clear-commands', 'Очистить командочки')
+        +formButtonField('clear-bot-messages', 'Очистить все от ботов')
+
+block scripts
+    script(src='/static/actions.js')

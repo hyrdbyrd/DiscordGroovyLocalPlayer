@@ -38,20 +38,20 @@ const notice = (msg, status = 'success') => {
 };
 
 const showSuccess = msg => {
-    const form = document.querySelector('.form');
+    const form = document.querySelector('.form__form');
     form.classList.add('form_status_success');
     setTimeout(() => form.classList.remove('form_status_success'), 5000);
     msg && notice(msg);
 };
 
 const showError = msg => {
-    const form = document.querySelector('.form');
+    const form = document.querySelector('.form__form');
     form.classList.add('form_status_error');
     setTimeout(() => form.classList.remove('form_status_error'), 5000);
     msg && notice(msg);
 }
 
-button.addEventListener('click', () => {
+const cb = () => {
     let input = {};
 
     switch (type) {
@@ -91,4 +91,7 @@ button.addEventListener('click', () => {
             else throw new Error('Чёто точно поломалося');
         })
         .catch(() => showError('Чето сломалося'));
-});
+};
+
+button.addEventListener('click', cb);
+form.addEventListener('submit', cb);

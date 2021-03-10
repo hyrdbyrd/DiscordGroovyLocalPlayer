@@ -15,6 +15,7 @@ body {
     font-size: 20px;
 
     padding: 20px;
+    margin: 0 10px;
 }
 
 .main {
@@ -31,7 +32,7 @@ body {
     padding: 10px 0;
 }
 
-.main-form {
+.form {
     flex-grow: 1;
 
     display: flex;
@@ -42,7 +43,12 @@ body {
     width: 90%;
 }
 
-.form {
+.form__title {
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
+.form__form {
     padding: 40px;
     margin: 40px;
 
@@ -64,11 +70,6 @@ body {
 .form_status_error {
     border-color: #fcc;
     background:#fee;
-}
-
-.form__title {
-    margin-bottom: 20px;
-    font-size: 40px;
 }
 
 .input {

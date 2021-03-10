@@ -1,0 +1,26 @@
+mixin formInputField(id)
+    input.input.form__field(type="text", id=id, name=id)&attributes(attributes)
+
+mixin formSelectField(id, options = [{ value: "none", text: "—" }], defaultValue="none")
+    select.select.form__field(id=id)
+        - for (const { value, text } of options)
+            option.select__option(value=value)= text
+
+mixin formButtonField(id="button", text="Делать штуки")
+    button.form__field.button.button_full-width(type="button", id=id)= text
+
+mixin form(title)
+    form.form#form
+        .form__title= title
+        .form__form
+            if (block)
+                block
+
+mixin playerForm(title, type, buttonText='Ввести')
+    +form(title)
+        +formInputField('type')(type="hidden", value=type)
+        +formInputField('channel-id')(placeholder='Id канала', value='631765425075650571')
+        if (block)
+            block
+        +formSelectField('order', [{ value: 'none', text: '—' }, { value: 'reverse', text: 'Наоборот' }, { value: 'shaffle', text: 'Перемешать' }])
+        +formButtonField('button', buttonText)

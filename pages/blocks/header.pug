@@ -1,0 +1,6 @@
+mixin header(activeTab)
+    header.header
+        - const buttons = [{ title: 'Авторизация', href: '/' }, { title: 'Плейлист', href: '/playlist' }, { title: 'Альбом', href: '/album' }, { title: 'Исполнитель', href: '/author' }, { title: 'Всячина', href: '/actions' }];
+        - for (const { title, href } of buttons)
+            a.button.url(href=href, class=`${activeTab === href ? 'button_current' : ''}`)= title
+        .url.button.stop STOP

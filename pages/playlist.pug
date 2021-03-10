@@ -1,0 +1,11 @@
+extends blocks/index
+
+include blocks/form
+
+block content
+    +playerForm('Плейлист', 'playlist')
+        +formInputField('kinds')(value='3', placeholder='Id плейлиста')
+        +formInputField('owner')(value='IRuss23', placeholder='Пользователь')
+
+block scripts
+    script(src='/static/player.js')
