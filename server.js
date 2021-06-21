@@ -1,5 +1,6 @@
 const path = require('path');
 const express = require('express');
+const opener = require('opener');
 
 const { api } = require('./api');
 
@@ -27,4 +28,8 @@ app
         }
     })
     .use('/api', api)
-    .listen(PORT);
+    .listen(PORT, () => {
+        const url = `http://localhost:${PORT}`;
+        console.log(`Server started on ${url}`);
+        opener(url);
+    });
